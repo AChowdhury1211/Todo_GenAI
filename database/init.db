@@ -1,0 +1,29 @@
+CREATE DATABASE todoapp;
+USE todoapp;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(80) NOT NULL UNIQUE,
+    password VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE todos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    title VARCHAR(200),
+    date DATE,
+    notes TEXT,
+    reminder DATETIME,
+    priority INT,
+    tag VARCHAR(50),
+    category VARCHAR(50),
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE notes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    title VARCHAR(200),
+    content TEXT,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
